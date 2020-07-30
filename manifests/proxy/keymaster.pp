@@ -16,8 +16,8 @@
 # Default: undef
 #
 class swift::proxy::keymaster (
-  $keymaster_config_path = undef
-  $encryption_root_secret = undef
+  $keymaster_config_path = undef,
+  $encryption_root_secret = undef,
 ) {
 
   include swift::deps
