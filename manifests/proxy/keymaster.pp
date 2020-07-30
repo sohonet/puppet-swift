@@ -9,14 +9,14 @@
 #
 # [*keymaster_config_path*]
 # Sets the path from which the keymaster config options should be read
-# Default: /etc/swift/keymaster.conf
+# Default: undef
 
 # [*encryption_root_secret*]
 # root secret from which encryption keys are derived
 # Default: undef
 #
 class swift::proxy::keymaster (
-  $keymaster_config_path = '/etc/swift/keymaster.conf',
+  $keymaster_config_path = undef
   $encryption_root_secret = undef
 ) {
 
