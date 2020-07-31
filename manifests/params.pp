@@ -4,7 +4,20 @@
 #
 class swift::params {
   include openstacklib::defaults
-  $pyvers = $::openstacklib::defaults::pyvers
+  # $pyvers = $::openstacklib::defaults::pyvers
+  #### The stable version of openstacklib we have does not have pyvers, so the
+  ####logic from the newer release is copied here 
+  if ($::os['family'] == 'Debian') {
+    $pyvers = '3'
+    $pyver3 = '3'
+  } elsif ($::os['name'] == 'Fedora') or
+          ($::os['family'] == 'RedHat' and Integer.new($::os['release']['major']) > 7) {
+    $pyvers = '3'
+    $pyver3 = '3.6'
+  } else {
+    $pyvers = ''
+    $pyver3 = '2.7'
+  }
 
   $client_package   = "python${pyvers}-swiftclient"
   $service_provider = undef
