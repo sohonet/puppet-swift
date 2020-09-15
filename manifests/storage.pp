@@ -26,15 +26,19 @@
 class swift::storage(
   $storage_local_net_ip,
   $rsync_use_xinetd = true,
+  $rsync_logfile = undef,
+  $rsync_reverse_lookup = undef,
 ) {
 
   include swift::deps
 
   if !defined(Class['rsync::server']){
     class{ '::rsync::server':
-      use_xinetd => $rsync_use_xinetd,
-      address    => $storage_local_net_ip,
-      use_chroot => 'no',
+      use_xinetd     => $rsync_use_xinetd,
+      address        => $storage_local_net_ip,
+      use_chroot     => 'no',
+      log_file       => $rsync_logfile,
+      reverse_lookup => $rsync_reverse_lookup,
     }
   }
 }
