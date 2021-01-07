@@ -45,7 +45,7 @@
 #
 # [*auth_pipeline_check*]
 #   Enable pipeline order check
-#   Defaults to 'false'
+#   Defaults to 'true'
 #
 # [*allow_multipart_uploads*]
 #   Enable multi-part uploads.
@@ -88,7 +88,7 @@ class swift::proxy::s3api(
   $multi_delete_concurrency      = $::os_service_default,
   $s3_acl                        = $::os_service_default,
   $storage_domain                = $::os_service_default,
-  $auth_pipeline_check           = false,
+  $auth_pipeline_check           = $::os_service_default,
   $allow_multipart_uploads       = $::os_service_default,
   $max_upload_part_num           = $::os_service_default,
   $check_bucket_owner            = $::os_service_default,
