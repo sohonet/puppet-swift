@@ -270,7 +270,7 @@ and swift::proxy::s3api instead')
 
   if $statsd_enabled {
     swift_proxy_config {
-      'DEFAULT/log_statsd_host' value => $log_statsd_host;
+      'DEFAULT/log_statsd_host': value => $log_statsd_host;
       'DEFAULT/log_statsd_port': value => $log_statsd_port;
       'DEFAULT/log_statsd_default_sample_rate': value => $log_statsd_default_sample_rate;
       'DEFAULT/log_statsd_sample_rate_factor': value => $log_statsd_sample_rate_factor;
