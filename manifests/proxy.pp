@@ -151,35 +151,41 @@
 #
 class swift::proxy(
   $proxy_local_net_ip,
-  $port                       = '8080',
-  $pipeline                   = ['healthcheck', 'cache', 'tempauth', 'proxy-server'],
-  $workers                    = $::os_workers,
-  $allow_account_management   = true,
-  $account_autocreate         = true,
-  $log_headers                = 'False',
-  $log_udp_host               = undef,
-  $log_udp_port               = undef,
-  $log_address                = '/dev/log',
-  $log_level                  = 'INFO',
-  $log_facility               = 'LOG_LOCAL2',
-  $log_handoffs               = true,
-  $log_name                   = 'proxy-server',
-  $cors_allow_origin          = undef,
-  $strict_cors_mode           = true,
-  $object_chunk_size          = 65536,
-  $client_chunk_size          = 65536,
-  $max_containers_per_account = 0,
-  $max_containers_whitelist   = $::os_service_default,
-  $read_affinity              = undef,
-  $write_affinity             = undef,
-  $write_affinity_node_count  = undef,
-  $client_timeout             = undef,
-  $node_timeout               = undef,
-  $manage_service             = true,
-  $enabled                    = true,
-  $package_ensure             = 'present',
-  $service_provider           = $::swift::params::service_provider,
-  $purge_config               = false,
+  $port                           = '8080',
+  $pipeline                       = ['healthcheck', 'cache', 'tempauth', 'proxy-server'],
+  $workers                        = $::os_workers,
+  $allow_account_management       = true,
+  $account_autocreate             = true,
+  $log_headers                    = 'False',
+  $log_udp_host                   = undef,
+  $log_udp_port                   = undef,
+  $log_address                    = '/dev/log',
+  $log_level                      = 'INFO',
+  $log_facility                   = 'LOG_LOCAL2',
+  $log_handoffs                   = true,
+  $log_name                       = 'proxy-server',
+  $statsd_enabled                 = false,
+  $log_statsd_host                = 'localhost',
+  $log_statsd_port                = 8125,
+  $log_statsd_default_sample_rate = '1.0',
+  $log_statsd_sample_rate_factor  = '1.0',
+  $log_statsd_metric_prefix       = '',
+  $cors_allow_origin              = undef,
+  $strict_cors_mode               = true,
+  $object_chunk_size              = 65536,
+  $client_chunk_size              = 65536,
+  $max_containers_per_account     = 0,
+  $max_containers_whitelist       = $::os_service_default,
+  $read_affinity                  = undef,
+  $write_affinity                 = undef,
+  $write_affinity_node_count      = undef,
+  $client_timeout                 = undef,
+  $node_timeout                   = undef,
+  $manage_service                 = true,
+  $enabled                        = true,
+  $package_ensure                 = 'present',
+  $service_provider               = $::swift::params::service_provider,
+  $purge_config                   = false,
 ) inherits ::swift::params {
 
   include swift::deps
@@ -260,6 +266,16 @@ and swift::proxy::s3api instead')
     'app:proxy-server/write_affinity':             value => $write_affinity;
     'app:proxy-server/write_affinity_node_count':  value => $write_affinity_node_count;
     'app:proxy-server/node_timeout':               value => $node_timeout;
+  }
+
+  if $statsd_enabled {
+    swift_proxy_config {
+      'DEFAULT/log_statsd_host' value => $log_statsd_host;
+      'DEFAULT/log_statsd_port': value => $log_statsd_port;
+      'DEFAULT/log_statsd_default_sample_rate': value => $log_statsd_default_sample_rate;
+      'DEFAULT/log_statsd_sample_rate_factor': value => $log_statsd_sample_rate_factor;
+      'DEFAULT/log_statsd_metric_prefix': value => $log_statsd_metric_prefix;
+    }
   }
 
   if $cors_allow_origin {
