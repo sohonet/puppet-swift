@@ -156,7 +156,7 @@ class swift::objectexpirer(
 
     # require the memcached class if it is on the same machine
     if !empty(grep(any2array($memcache_servers), '127.0.0.1')) {
-      Class['memcached'] -> Class['swift::objectexpirer']
+      Class['memcached']
     }
   } else {
     swift_object_expirer_config {
