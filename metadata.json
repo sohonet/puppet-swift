@@ -3,35 +3,35 @@
     "dependencies": [
         {
             "name": "puppetlabs/inifile",
-            "version_requirement": ">=2.0.0 <6.0.0"
+            "version_requirement": ">=2.0.0"
         },
         {
             "name": "openstack/keystone",
-            "version_requirement": ">=20.3.0 <21.0.0"
+            "version_requirement": ">=20.3.0"
         },
         {
             "name": "openstack/openstacklib",
-            "version_requirement": ">=20.3.0 <21.0.0"
+            "version_requirement": ">=20.3.0"
         },
         {
             "name": "puppetlabs/rsync",
-            "version_requirement": ">=1.1.0 <2.0.0"
+            "version_requirement": ">=1.1.0"
         },
         {
             "name": "puppetlabs/stdlib",
-            "version_requirement": ">=5.0.0 <9.0.0"
+            "version_requirement": ">=5.0.0"
         },
         {
             "name": "puppetlabs/xinetd",
-            "version_requirement": ">=1.0.1 <=3.3.0"
+            "version_requirement": ">=1.0.1"
         },
         {
             "name": "puppetlabs/concat",
-            "version_requirement": ">=1.0.0 <8.0.0"
+            "version_requirement": ">=1.0.0"
         },
         {
             "name": "saz/memcached",
-            "version_requirement": ">=2.0.2 <9.0.0"
+            "version_requirement": ">=2.0.2"
         }
     ],
     "description": "Installs and configures OpenStack Swift (Object Storage).",
